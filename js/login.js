@@ -32,7 +32,7 @@ submitBtn.addEventListener("click",function(e){
         if(selectedUserTypeValue=="user"){
             window.location.href = "../html_pages/userDashboard.html";
         }else{
-            window.location.href = "../html_pages/adminDashboard.html";
+            window.location.href = "../html_pages/adminDashboardNew.html";
         }
         
     }else{

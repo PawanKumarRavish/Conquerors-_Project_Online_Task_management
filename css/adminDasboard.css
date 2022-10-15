@@ -1,0 +1,20 @@
+#createTaskform,#tableShowTasks{
+    margin-top: 5px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+
+
+.heading{
+    margin-top: 15px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.divSubmitBtn{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+}
