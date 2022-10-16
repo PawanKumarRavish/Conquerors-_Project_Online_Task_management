@@ -2,7 +2,7 @@ console.log("Login Page")
 import { USERS_TABLE, KEY_NAME, KEY_EMAIL, KEY_DOB, KEY_GENDER, KEY_USERTYPE, KEY_PASSWORD } from './constants.js';
 
 //localStorage.clear();
-console.log(JSON.parse(localStorage.getItem(USERS_TABLE)));
+//console.log(JSON.parse(localStorage.getItem(USERS_TABLE)));
 
 let emailField = document.getElementById("email");
 let passwordField = document.getElementById("password");
@@ -10,6 +10,9 @@ let loginform = document.getElementById("loginform");
 let radioUserField = document.getElementById("radioUser");
 let radioAdminField = document.getElementById("radioAdmin");
 let submitBtn = document.getElementById("submitBtn");
+
+
+
 
 submitBtn.addEventListener("click",function(e){
     for(var i=0;i<loginform.elements.length;i++){
