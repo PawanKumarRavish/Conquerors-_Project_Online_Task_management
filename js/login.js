@@ -15,6 +15,7 @@ let submitBtn = document.getElementById("submitBtn");
 
 
 submitBtn.addEventListener("click",function(e){
+
     for(var i=0;i<loginform.elements.length;i++){
         if(loginform.elements[i].value === '' && loginform.elements[i].hasAttribute('required')){
             return false;
@@ -30,6 +31,7 @@ submitBtn.addEventListener("click",function(e){
 
     if(validateLogin(emailField.value,passwordField.value,selectedUserTypeValue)){
         console.log("Success");
+        localStorage.setItem("loggedUserEmail",emailField.value);
         resetForm();
 
         if(selectedUserTypeValue=="user"){
