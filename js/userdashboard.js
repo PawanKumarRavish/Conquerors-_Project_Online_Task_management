@@ -5,6 +5,17 @@ const KEY_COMPLETED = "Completed";
 const KEY_PENDING = "Pending";
 let tasksArray;
 
+let ginti=0;
+
+let newArray=[];
+
+let workedHours=0;
+
+let totalEarning=0;
+
+let headngTotalEarning=document.getElementById('headingUsers');
+let headingTotalAssignedTasks=document.getElementById('headingTasks');
+
 let loggedUserEmail = localStorage.getItem("loggedUserEmail");
 let tableBody = document.getElementById("tableBody");
 
@@ -37,14 +48,19 @@ class UserTasks {
     showUserTasks() {
         let html = "";
         this.tasksArray.forEach(function (element, index) {
+
+
+            localStorage.setItem("assignedTasks",ginti+1);
             if (element.userEmail == loggedUserEmail) {
                 html += `<tr>
-                        <td>${index + 1}</td>
+                        <td>${ginti + 1}</td>
                         <td>${element.title}</td>
                         <td>${element.description}</td>
                         <td>$ ${element.hourlyRate}</td>
                         <td id= "${element.id}" onclick="completeTask(this.id)">${checkTaskStatus(element.isCompleted)} </td>
                         </tr>`;
+
+                        ginti+=1;
             }
 
         });
@@ -81,14 +97,35 @@ if (tasks != null) {
 
 // Making the task as complete
 function completeTask(taskId) {
+
+    workedHours=prompt("enter how many hours you have worked ");
     let i = tasksArray.findIndex(el => el.id == taskId);
     let obj = tasksArray[i];
     obj["isCompleted"] = true;
     localStorage.setItem(TASKS_TABLE, JSON.stringify(tasksArray));
+
+    let hours = obj["hourlyRate"];
+    toCalculateTotalEarning(workedHours,hours);
     window.location.reload();
+   
+    
 
 
 }
+
+function toCalculateTotalEarning(workedHours,hourlyRate){
+    let earning=workedHours*hourlyRate;
+   totalEarning+=earning;
+   totalEarning+= parseFloat (localStorage.getItem('paise'));
+
+    console.log(totalEarning);
+    localStorage.setItem("paise",totalEarning)
+    
+    
+
+}
+
+
 
 // checking the status of tasks (Completed or pending)
 function checkTaskStatus(status) {
@@ -102,3 +139,7 @@ function checkTaskStatus(status) {
 let userTaskObj = new UserTasks(tasksArray);
 userTaskObj.getLoggedUserTasks();
 userTaskObj.calculatePendingTasks();
+
+headngTotalEarning.innerText=localStorage.getItem("paise");
+
+headingTotalAssignedTasks.innerText=localStorage.getItem('assignedTasks');
