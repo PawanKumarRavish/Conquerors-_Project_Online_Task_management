@@ -98,15 +98,19 @@ if (tasks != null) {
 // Making the task as complete
 function completeTask(taskId) {
 
-    workedHours=prompt("enter how many hours you have worked ");
+    
     let i = tasksArray.findIndex(el => el.id == taskId);
     let obj = tasksArray[i];
-    obj["isCompleted"] = true;
+    if(obj.isCompleted==false){
+        workedHours=prompt("enter how many hours you have worked ");
+        obj["isCompleted"] = true;
     localStorage.setItem(TASKS_TABLE, JSON.stringify(tasksArray));
 
     let hours = obj["hourlyRate"];
     toCalculateTotalEarning(workedHours,hours);
     window.location.reload();
+    }
+    
    
     
 
@@ -143,3 +147,8 @@ userTaskObj.calculatePendingTasks();
 headngTotalEarning.innerText=localStorage.getItem("paise");
 
 headingTotalAssignedTasks.innerText=localStorage.getItem('assignedTasks');
+
+// if(loggedUserEmail=="usernew@gmail.com"){
+//     localStorage.setItem("paise",0);
+//     headngTotalEarning.innerText=localStorage.getItem("paise");
+// }
